@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { ShoppingCart, X } from "lucide-react";
+import { ShoppingCart, X, Trash2 } from "lucide-react";
 import { useCartStore } from "@/hooks/use-cart";
 import { CartItem } from "./cart-item";
 import { CartSummary } from "./cart-summary";
@@ -64,7 +64,7 @@ export function CartDrawer({ children }: CartDrawerProps) {
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>{children || defaultTrigger}</SheetTrigger>
 
-      <SheetContent className="w-full sm:max-w-lg flex flex-col h-full">
+      <SheetContent className="w-full sm:max-w-lg flex flex-col h-full [&>button]:hidden">
         <SheetHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
@@ -81,17 +81,30 @@ export function CartDrawer({ children }: CartDrawerProps) {
               </SheetDescription>
             </div>
 
-            {totalItems > 0 && (
+            <div className="flex items-center gap-1">
+              {totalItems > 0 && (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleClearCart}
+                  className="text-muted-foreground hover:text-destructive cursor-pointer h-8 w-8 p-0"
+                  title="Limpar carrinho"
+                >
+                  <Trash2 className="h-4 w-4" />
+                  <span className="sr-only">Limpar carrinho</span>
+                </Button>
+              )}
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={handleClearCart}
-                className="text-muted-foreground hover:text-destructive cursor-pointer"
+                onClick={() => setIsOpen(false)}
+                className="text-muted-foreground hover:text-foreground cursor-pointer h-8 w-8 p-0"
+                title="Fechar carrinho"
               >
                 <X className="h-4 w-4" />
-                <span className="sr-only">Limpar carrinho</span>
+                <span className="sr-only">Fechar carrinho</span>
               </Button>
-            )}
+            </div>
           </div>
         </SheetHeader>
 
