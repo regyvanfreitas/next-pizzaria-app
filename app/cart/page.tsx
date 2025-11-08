@@ -27,22 +27,34 @@ export default function CartPage() {
   return (
     <div className="min-h-screen py-12">
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center space-x-4">
-            <Button
-              variant="ghost"
-              size="sm"
-              asChild
-              className="cursor-pointer"
-            >
-              <Link href="/menu">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Voltar ao Menu
-              </Link>
-            </Button>
+        <div className="mb-8">
+          <div className="flex flex-col space-y-4 sm:hidden">
+            <div className="flex items-center justify-between">
+              <Button
+                variant="ghost"
+                size="sm"
+                asChild
+                className="cursor-pointer"
+              >
+                <Link href="/menu">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Voltar
+                </Link>
+              </Button>
+              {items.length > 0 && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleClearCart}
+                  className="text-muted-foreground hover:text-destructive cursor-pointer"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              )}
+            </div>
             <div>
-              <h1 className="text-3xl font-bold">Seu Carrinho</h1>
-              <p className="text-muted-foreground">
+              <h1 className="text-2xl font-bold">Seu Carrinho</h1>
+              <p className="text-sm text-muted-foreground">
                 {totalItems === 0
                   ? "Nenhum item no carrinho"
                   : `${totalItems} ${
@@ -52,16 +64,42 @@ export default function CartPage() {
             </div>
           </div>
 
-          {items.length > 0 && (
-            <Button
-              variant="outline"
-              onClick={handleClearCart}
-              className="text-muted-foreground hover:text-destructive cursor-pointer"
-            >
-              <Trash2 className="h-4 w-4 mr-2" />
-              Limpar Carrinho
-            </Button>
-          )}
+          <div className="hidden sm:flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <Button
+                variant="ghost"
+                size="sm"
+                asChild
+                className="cursor-pointer"
+              >
+                <Link href="/menu">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Voltar ao Menu
+                </Link>
+              </Button>
+              <div>
+                <h1 className="text-3xl font-bold">Seu Carrinho</h1>
+                <p className="text-muted-foreground">
+                  {totalItems === 0
+                    ? "Nenhum item no carrinho"
+                    : `${totalItems} ${
+                        totalItems === 1 ? "item" : "itens"
+                      } no carrinho`}
+                </p>
+              </div>
+            </div>
+
+            {items.length > 0 && (
+              <Button
+                variant="outline"
+                onClick={handleClearCart}
+                className="text-muted-foreground hover:text-destructive cursor-pointer"
+              >
+                <Trash2 className="h-4 w-4 mr-2" />
+                Limpar Carrinho
+              </Button>
+            )}
+          </div>
         </div>
 
         {items.length === 0 ? (
