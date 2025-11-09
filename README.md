@@ -10,7 +10,6 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16.0.1-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 **[🚀 Ver Demonstração](https://pizzaria-app-rf.vercel.app/)**
 
